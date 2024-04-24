@@ -1,0 +1,637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище StalCraftModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID_Account" />
+          </Key>
+          <Property Name="ID_Account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Login_" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password_" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Users_ID" Type="int" />
+          <Property Name="Fraction_ID" Type="int" />
+          <Property Name="Role_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Armor">
+          <Key>
+            <PropertyRef Name="ID_Armor" />
+          </Key>
+          <Property Name="ID_Armor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_armor" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Armor_on_akk">
+          <Key>
+            <PropertyRef Name="ID_Gun_on_akk" />
+          </Key>
+          <Property Name="ID_Gun_on_akk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account_ID" Type="int" Nullable="false" />
+          <Property Name="Armor_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cheque">
+          <Key>
+            <PropertyRef Name="ID_Cheque" />
+          </Key>
+          <Property Name="ID_Cheque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adres" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Date_" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Account_ID" Type="int" Nullable="false" />
+          <Property Name="Donate_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donate">
+          <Key>
+            <PropertyRef Name="ID_Donate" />
+          </Key>
+          <Property Name="ID_Donate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Donate_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Donate_Cost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fraction">
+          <Key>
+            <PropertyRef Name="ID_Fraction" />
+          </Key>
+          <Property Name="ID_Fraction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fraction_Name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gun_on_akk">
+          <Key>
+            <PropertyRef Name="ID_Gun_on_akk" />
+          </Key>
+          <Property Name="ID_Gun_on_akk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account_ID" Type="int" Nullable="false" />
+          <Property Name="Gun_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guns">
+          <Key>
+            <PropertyRef Name="ID_Gun" />
+          </Key>
+          <Property Name="ID_Gun" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_gun" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_Name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_Users" />
+          </Key>
+          <Property Name="ID_Users" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_" Type="varchar" MaxLength="30" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Card_Number" Type="real" Nullable="false" />
+          <Property Name="CVV" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Account__Fractio__5AEE82B9">
+          <End Role="Fraction" Type="Self.Fraction" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fraction">
+              <PropertyRef Name="ID_Fraction" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Fraction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Account__Role_ID__5BE2A6F2">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Account__Users_I__59FA5E80">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_Users" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Users_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Armor_on___Accou__6383C8BA">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Armor_on_akk" Type="Self.Armor_on_akk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID_Account" />
+            </Principal>
+            <Dependent Role="Armor_on_akk">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Armor_on___Armor__628FA481">
+          <End Role="Armor" Type="Self.Armor" Multiplicity="1" />
+          <End Role="Armor_on_akk" Type="Self.Armor_on_akk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Armor">
+              <PropertyRef Name="ID_Armor" />
+            </Principal>
+            <Dependent Role="Armor_on_akk">
+              <PropertyRef Name="Armor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cheque__Account___66603565">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID_Account" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cheque__Donate_I__6754599E">
+          <End Role="Donate" Type="Self.Donate" Multiplicity="1" />
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donate">
+              <PropertyRef Name="ID_Donate" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="Donate_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gun_on_ak__Accou__5FB337D6">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Gun_on_akk" Type="Self.Gun_on_akk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID_Account" />
+            </Principal>
+            <Dependent Role="Gun_on_akk">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gun_on_ak__Gun_I__5EBF139D">
+          <End Role="Guns" Type="Self.Guns" Multiplicity="1" />
+          <End Role="Gun_on_akk" Type="Self.Gun_on_akk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guns">
+              <PropertyRef Name="ID_Gun" />
+            </Principal>
+            <Dependent Role="Gun_on_akk">
+              <PropertyRef Name="Gun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище StalCraftModelContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Armor" EntityType="Self.Armor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Armor_on_akk" EntityType="Self.Armor_on_akk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cheque" EntityType="Self.Cheque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donate" EntityType="Self.Donate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fraction" EntityType="Self.Fraction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gun_on_akk" EntityType="Self.Gun_on_akk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guns" EntityType="Self.Guns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Account__Fractio__5AEE82B9" Association="Self.FK__Account__Fractio__5AEE82B9">
+            <End Role="Fraction" EntitySet="Fraction" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Account__Role_ID__5BE2A6F2" Association="Self.FK__Account__Role_ID__5BE2A6F2">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Account__Users_I__59FA5E80" Association="Self.FK__Account__Users_I__59FA5E80">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Armor_on___Accou__6383C8BA" Association="Self.FK__Armor_on___Accou__6383C8BA">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Armor_on_akk" EntitySet="Armor_on_akk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Armor_on___Armor__628FA481" Association="Self.FK__Armor_on___Armor__628FA481">
+            <End Role="Armor" EntitySet="Armor" />
+            <End Role="Armor_on_akk" EntitySet="Armor_on_akk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cheque__Account___66603565" Association="Self.FK__Cheque__Account___66603565">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cheque__Donate_I__6754599E" Association="Self.FK__Cheque__Donate_I__6754599E">
+            <End Role="Donate" EntitySet="Donate" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gun_on_ak__Accou__5FB337D6" Association="Self.FK__Gun_on_ak__Accou__5FB337D6">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Gun_on_akk" EntitySet="Gun_on_akk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gun_on_ak__Gun_I__5EBF139D" Association="Self.FK__Gun_on_ak__Gun_I__5EBF139D">
+            <End Role="Guns" EntitySet="Guns" />
+            <End Role="Gun_on_akk" EntitySet="Gun_on_akk" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StalCraftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID_Account" />
+          </Key>
+          <Property Name="ID_Account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Users_ID" Type="Int32" />
+          <Property Name="Fraction_ID" Type="Int32" />
+          <Property Name="Role_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fraction" Relationship="Self.FK__Account__Fractio__5AEE82B9" FromRole="Account" ToRole="Fraction" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Account__Role_ID__5BE2A6F2" FromRole="Account" ToRole="Roles" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Account__Users_I__59FA5E80" FromRole="Account" ToRole="Users" />
+          <NavigationProperty Name="Armor_on_akk" Relationship="Self.FK__Armor_on___Accou__6383C8BA" FromRole="Account" ToRole="Armor_on_akk" />
+          <NavigationProperty Name="Cheque" Relationship="Self.FK__Cheque__Account___66603565" FromRole="Account" ToRole="Cheque" />
+          <NavigationProperty Name="Gun_on_akk" Relationship="Self.FK__Gun_on_ak__Accou__5FB337D6" FromRole="Account" ToRole="Gun_on_akk" />
+        </EntityType>
+        <EntityType Name="Armor">
+          <Key>
+            <PropertyRef Name="ID_Armor" />
+          </Key>
+          <Property Name="ID_Armor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_armor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Armor_on_akk" Relationship="Self.FK__Armor_on___Armor__628FA481" FromRole="Armor" ToRole="Armor_on_akk" />
+        </EntityType>
+        <EntityType Name="Armor_on_akk">
+          <Key>
+            <PropertyRef Name="ID_Gun_on_akk" />
+          </Key>
+          <Property Name="ID_Gun_on_akk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account_ID" Type="Int32" Nullable="false" />
+          <Property Name="Armor_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Armor_on___Accou__6383C8BA" FromRole="Armor_on_akk" ToRole="Account" />
+          <NavigationProperty Name="Armor" Relationship="Self.FK__Armor_on___Armor__628FA481" FromRole="Armor_on_akk" ToRole="Armor" />
+        </EntityType>
+        <EntityType Name="Cheque">
+          <Key>
+            <PropertyRef Name="ID_Cheque" />
+          </Key>
+          <Property Name="ID_Cheque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adres" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account_ID" Type="Int32" Nullable="false" />
+          <Property Name="Donate_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Cheque__Account___66603565" FromRole="Cheque" ToRole="Account" />
+          <NavigationProperty Name="Donate" Relationship="Self.FK__Cheque__Donate_I__6754599E" FromRole="Cheque" ToRole="Donate" />
+        </EntityType>
+        <EntityType Name="Donate">
+          <Key>
+            <PropertyRef Name="ID_Donate" />
+          </Key>
+          <Property Name="ID_Donate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Donate_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Donate_Cost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cheque" Relationship="Self.FK__Cheque__Donate_I__6754599E" FromRole="Donate" ToRole="Cheque" />
+        </EntityType>
+        <EntityType Name="Fraction">
+          <Key>
+            <PropertyRef Name="ID_Fraction" />
+          </Key>
+          <Property Name="ID_Fraction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fraction_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Account__Fractio__5AEE82B9" FromRole="Fraction" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Gun_on_akk">
+          <Key>
+            <PropertyRef Name="ID_Gun_on_akk" />
+          </Key>
+          <Property Name="ID_Gun_on_akk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account_ID" Type="Int32" Nullable="false" />
+          <Property Name="Gun_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Gun_on_ak__Accou__5FB337D6" FromRole="Gun_on_akk" ToRole="Account" />
+          <NavigationProperty Name="Guns" Relationship="Self.FK__Gun_on_ak__Gun_I__5EBF139D" FromRole="Gun_on_akk" ToRole="Guns" />
+        </EntityType>
+        <EntityType Name="Guns">
+          <Key>
+            <PropertyRef Name="ID_Gun" />
+          </Key>
+          <Property Name="ID_Gun" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_gun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Gun_on_akk" Relationship="Self.FK__Gun_on_ak__Gun_I__5EBF139D" FromRole="Guns" ToRole="Gun_on_akk" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Account__Role_ID__5BE2A6F2" FromRole="Roles" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID_Users" />
+          </Key>
+          <Property Name="ID_Users" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Card_Number" Type="Single" Nullable="false" />
+          <Property Name="CVV" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Account__Users_I__59FA5E80" FromRole="Users" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK__Account__Fractio__5AEE82B9">
+          <End Role="Fraction" Type="Self.Fraction" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fraction">
+              <PropertyRef Name="ID_Fraction" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Fraction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Account__Role_ID__5BE2A6F2">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Account__Users_I__59FA5E80">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID_Users" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Users_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Armor_on___Accou__6383C8BA">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Armor_on_akk" Type="Self.Armor_on_akk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID_Account" />
+            </Principal>
+            <Dependent Role="Armor_on_akk">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cheque__Account___66603565">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID_Account" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gun_on_ak__Accou__5FB337D6">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Gun_on_akk" Type="Self.Gun_on_akk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID_Account" />
+            </Principal>
+            <Dependent Role="Gun_on_akk">
+              <PropertyRef Name="Account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Armor_on___Armor__628FA481">
+          <End Role="Armor" Type="Self.Armor" Multiplicity="1" />
+          <End Role="Armor_on_akk" Type="Self.Armor_on_akk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Armor">
+              <PropertyRef Name="ID_Armor" />
+            </Principal>
+            <Dependent Role="Armor_on_akk">
+              <PropertyRef Name="Armor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cheque__Donate_I__6754599E">
+          <End Role="Donate" Type="Self.Donate" Multiplicity="1" />
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donate">
+              <PropertyRef Name="ID_Donate" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="Donate_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Gun_on_ak__Gun_I__5EBF139D">
+          <End Role="Guns" Type="Self.Guns" Multiplicity="1" />
+          <End Role="Gun_on_akk" Type="Self.Gun_on_akk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guns">
+              <PropertyRef Name="ID_Gun" />
+            </Principal>
+            <Dependent Role="Gun_on_akk">
+              <PropertyRef Name="Gun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StalCraftEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Armor" EntityType="Self.Armor" />
+          <EntitySet Name="Armor_on_akk" EntityType="Self.Armor_on_akk" />
+          <EntitySet Name="Cheque" EntityType="Self.Cheque" />
+          <EntitySet Name="Donate" EntityType="Self.Donate" />
+          <EntitySet Name="Fraction" EntityType="Self.Fraction" />
+          <EntitySet Name="Gun_on_akk" EntityType="Self.Gun_on_akk" />
+          <EntitySet Name="Guns" EntityType="Self.Guns" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Account__Fractio__5AEE82B9" Association="Self.FK__Account__Fractio__5AEE82B9">
+            <End Role="Fraction" EntitySet="Fraction" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Account__Role_ID__5BE2A6F2" Association="Self.FK__Account__Role_ID__5BE2A6F2">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Account__Users_I__59FA5E80" Association="Self.FK__Account__Users_I__59FA5E80">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Armor_on___Accou__6383C8BA" Association="Self.FK__Armor_on___Accou__6383C8BA">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Armor_on_akk" EntitySet="Armor_on_akk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cheque__Account___66603565" Association="Self.FK__Cheque__Account___66603565">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gun_on_ak__Accou__5FB337D6" Association="Self.FK__Gun_on_ak__Accou__5FB337D6">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Gun_on_akk" EntitySet="Gun_on_akk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Armor_on___Armor__628FA481" Association="Self.FK__Armor_on___Armor__628FA481">
+            <End Role="Armor" EntitySet="Armor" />
+            <End Role="Armor_on_akk" EntitySet="Armor_on_akk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cheque__Donate_I__6754599E" Association="Self.FK__Cheque__Donate_I__6754599E">
+            <End Role="Donate" EntitySet="Donate" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Gun_on_ak__Gun_I__5EBF139D" Association="Self.FK__Gun_on_ak__Gun_I__5EBF139D">
+            <End Role="Guns" EntitySet="Guns" />
+            <End Role="Gun_on_akk" EntitySet="Gun_on_akk" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище StalCraftModelContainer" CdmEntityContainer="StalCraftEntities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="StalCraftModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ID_Account" ColumnName="ID_Account" />
+                <ScalarProperty Name="Account_Name" ColumnName="Account_Name" />
+                <ScalarProperty Name="Login_" ColumnName="Login_" />
+                <ScalarProperty Name="Password_" ColumnName="Password_" />
+                <ScalarProperty Name="Users_ID" ColumnName="Users_ID" />
+                <ScalarProperty Name="Fraction_ID" ColumnName="Fraction_ID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Armor">
+            <EntityTypeMapping TypeName="StalCraftModel.Armor">
+              <MappingFragment StoreEntitySet="Armor">
+                <ScalarProperty Name="ID_Armor" ColumnName="ID_Armor" />
+                <ScalarProperty Name="Name_armor" ColumnName="Name_armor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Armor_on_akk">
+            <EntityTypeMapping TypeName="StalCraftModel.Armor_on_akk">
+              <MappingFragment StoreEntitySet="Armor_on_akk">
+                <ScalarProperty Name="ID_Gun_on_akk" ColumnName="ID_Gun_on_akk" />
+                <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+                <ScalarProperty Name="Armor_ID" ColumnName="Armor_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cheque">
+            <EntityTypeMapping TypeName="StalCraftModel.Cheque">
+              <MappingFragment StoreEntitySet="Cheque">
+                <ScalarProperty Name="ID_Cheque" ColumnName="ID_Cheque" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Date_" ColumnName="Date_" />
+                <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+                <ScalarProperty Name="Donate_ID" ColumnName="Donate_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donate">
+            <EntityTypeMapping TypeName="StalCraftModel.Donate">
+              <MappingFragment StoreEntitySet="Donate">
+                <ScalarProperty Name="ID_Donate" ColumnName="ID_Donate" />
+                <ScalarProperty Name="Donate_Name" ColumnName="Donate_Name" />
+                <ScalarProperty Name="Donate_Cost" ColumnName="Donate_Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fraction">
+            <EntityTypeMapping TypeName="StalCraftModel.Fraction">
+              <MappingFragment StoreEntitySet="Fraction">
+                <ScalarProperty Name="ID_Fraction" ColumnName="ID_Fraction" />
+                <ScalarProperty Name="Fraction_Name" ColumnName="Fraction_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gun_on_akk">
+            <EntityTypeMapping TypeName="StalCraftModel.Gun_on_akk">
+              <MappingFragment StoreEntitySet="Gun_on_akk">
+                <ScalarProperty Name="ID_Gun_on_akk" ColumnName="ID_Gun_on_akk" />
+                <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
+                <ScalarProperty Name="Gun_ID" ColumnName="Gun_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guns">
+            <EntityTypeMapping TypeName="StalCraftModel.Guns">
+              <MappingFragment StoreEntitySet="Guns">
+                <ScalarProperty Name="ID_Gun" ColumnName="ID_Gun" />
+                <ScalarProperty Name="Name_gun" ColumnName="Name_gun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="StalCraftModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="StalCraftModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID_Users" ColumnName="ID_Users" />
+                <ScalarProperty Name="Name_" ColumnName="Name_" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Card_Number" ColumnName="Card_Number" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

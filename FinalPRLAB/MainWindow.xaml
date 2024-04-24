@@ -1,0 +1,31 @@
+﻿<Window x:Class="FinalPRLAB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalPRLAB"
+        mc:Ignorable="d"
+        Background="Black"
+         Height="250" Width="200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="45*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="IN" Grid.Column="1" Content="Войти" Grid.Row="5" Background="Purple" Click="IN_Click"/>
+        <TextBox x:Name="LoginTBX" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center"/>
+        <PasswordBox x:Name="PasswordTBX" Grid.Row="3" Grid.Column="1" />
+
+
+    </Grid>
+</Window>

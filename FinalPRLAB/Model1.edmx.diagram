@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64360336eac54a45b7db9aaf5f93b96d" Name="Diagram1" ZoomLevel="57">
+        <EntityTypeShape EntityType="StalCraftModel.Account" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Armor" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Armor_on_akk" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Cheque" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Donate" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Fraction" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Gun_on_akk" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Guns" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Roles" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StalCraftModel.Users" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="StalCraftModel.FK__Account__Fractio__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="StalCraftModel.FK__Account__Role_ID__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="StalCraftModel.FK__Account__Users_I__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="StalCraftModel.FK__Armor_on___Accou__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="StalCraftModel.FK__Cheque__Account___66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="StalCraftModel.FK__Gun_on_ak__Accou__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="StalCraftModel.FK__Armor_on___Armor__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="StalCraftModel.FK__Cheque__Donate_I__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="StalCraftModel.FK__Gun_on_ak__Gun_I__5EBF139D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
